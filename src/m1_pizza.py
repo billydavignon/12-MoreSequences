@@ -7,8 +7,8 @@ This module lets you practice:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Billy Davignon.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 import math
@@ -40,7 +40,7 @@ def main():
 def run_test_generate_points_on_circle():
     """ Tests the   generate_points_on_circle   function. """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # Done: 2. Implement this TEST function.
     #   It TESTS the  generate_points_on_circle  function defined below.
     #   Include at least ** 1 ** ADDITIONAL test (that YOU write).
     #
@@ -57,7 +57,7 @@ def run_test_generate_points_on_circle():
     # Test 1:
     expected = [rg.Point(125.0, 50.0),  # All numbers are approximate.
                 rg.Point(112.5, 71.7),
-                rg.Point(87.5, 71.7),
+                rg.Point(87.5, 71.1),
                 rg.Point(75.0, 50.0),
                 rg.Point(87.5, 28.3),
                 rg.Point(112.5, 28.3)]
@@ -70,6 +70,19 @@ def run_test_generate_points_on_circle():
     # -------------------------------------------------------------------------
     # Test 2:  (YOU write THIS test)
     # -------------------------------------------------------------------------
+
+    # Test 2:
+    expected = [rg.Point(30.0, 50.0),  # All numbers are approximate.
+                rg.Point(27.5, 54.3),
+                rg.Point(22.5, 54.3),
+                rg.Point(20.0, 50.0),
+                rg.Point(22.5, 47.5),
+                rg.Point(27.5, 47.5)]
+    circle = rg.Circle(rg.Point(25, 50), 5)
+    answer = generate_points_on_circle(circle, 6)
+
+    print('Expected:', expected)
+    print('Actual:  ', answer)
 
 
 def generate_points_on_circle(circle_for_points, number_of_points_to_generate):
@@ -215,8 +228,28 @@ def draw_points_on_circle(window, circle, number_of_points, color):
       :type number_of_points: int
       :type color:            str
     """
+    window = rg.RoseWindow
+    circle = rg.Circle
+    radius = circle.radius
+    center_x = circle.center.x
+    center_y = circle.center.y
+    delta_degrees = 360 / number_of_points
+    points = []
+    degrees = 0
+    for _ in range(number_of_points):
+        angle = math.radians(degrees)
+        x = radius * math.cos(angle) + center_x
+        y = radius * math.sin(angle) + center_y
+        point_on_circumference = rg.Point(x, y)
+        points.append(point_on_circumference)
+        degrees = degrees + delta_degrees
+        circle.fill_color = color
+
+    window.render()
+    return points
     # -------------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # TODO: 4. Implement and test
+    #  this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPLEMENTATION REQUIREMENT:
