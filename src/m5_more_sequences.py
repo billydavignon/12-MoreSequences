@@ -8,8 +8,8 @@ for ITERATING through SEQUENCES, including:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Billy Davignon.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -76,8 +76,13 @@ def sum_radii(circles):
       :type circles:  list | tuple of rg.Circle
       :rtype: int | float
     """
+    total = 0
+    for k in range(len(circles)):
+        total = total + circles[k].radius
+    return total
+
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # Done: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     #
     # Note: No fair using "slices" on ANY of these problems,
@@ -151,6 +156,11 @@ def count_last_n_odds(integers, n):
       :type n: int
       :rtype: int
     """
+    total = 0
+    for k in range(len(integers)):
+        if integers[k] % 2 == 1:
+            total = total + 1
+    return total
     # -------------------------------------------------------------------------
     # TODO: 3. Implement and test this function.
     #     The testing code is already written for you (above).
@@ -226,8 +236,14 @@ def index_of_first_negative(numbers):
       :type numbers: list | tuple of float | int
       :rtype: int
     """
-    # -------------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    for k in range(len(numbers)):
+        if numbers[k] < 0:
+            return k
+        else:
+            return -1
+
+    # ----------------------------------------------------------------------
+    # Done: 4. Implement and test this function.
     #     The testing code is already written for you (above).
     # -------------------------------------------------------------------------
 
@@ -284,6 +300,11 @@ def contains_an_a(s):
       :type s: str
       :rtype: bool
     """
+    for k in range(len(s)):
+        if s[k] == 'a':
+            return True
+        else:
+            return False
     # -------------------------------------------------------------------------
     # TODO: 5. Implement and test this function.
     #     The testing code is already written for you (above).

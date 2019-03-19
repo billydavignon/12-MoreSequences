@@ -33,8 +33,8 @@ def main():
     # run_test_generate_points_on_circle()
     # run_test_draw_points_on_circle()
     # run_test_pizza()
-    run_test_polygon()
-    # run_test_fancy_polygon()
+    # run_test_polygon()
+    run_test_fancy_polygon()
 
 
 def run_test_generate_points_on_circle():
@@ -364,7 +364,7 @@ def pizza(window, circle, number_of_slices, color, thickness):
 def run_test_polygon():
     """ Tests the   polygon   function. """
     # -------------------------------------------------------------------------
-    # TODO: 7. Implement this TEST function.
+    # Done: 7. Implement this TEST function.
     #   It TESTS the   polygon   function defined below.
     #   Include at least ** 1 ** ADDITIONAL test (that YOU write).
     #
@@ -393,6 +393,11 @@ def run_test_polygon():
 
     window.close_on_mouse_click()
 
+    window = rg.RoseWindow(400, 400)
+    circle = rg.Circle(rg.Point(200, 200), 100)
+    circle.outline_thickness = 10
+    polygon(window, circle, 10, 'green', 10)
+    window.close_on_mouse_click()
     # -------------------------------------------------------------------------
     # Test 3:  (YOU write THIS test)
     # -------------------------------------------------------------------------
@@ -438,7 +443,7 @@ def polygon(window, circle, number_of_segments, color, thickness):
     window.render()
 
     # -------------------------------------------------------------------------
-    # TODO: 8. Implement and test this function.
+    # Done: 8. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPLEMENTATION REQUIREMENT:
@@ -451,7 +456,7 @@ def polygon(window, circle, number_of_segments, color, thickness):
 def run_test_fancy_polygon():
     """ Tests the   fancy_polygon   function. """
     # -------------------------------------------------------------------------
-    # TODO: 9. Implement this TEST function.
+    # Done: 9. Implement this TEST function.
     #   It TESTS the   fancy_polygon   function defined below.
     #   Include at least ** 1 ** ADDITIONAL test (that YOU write).
     #
@@ -486,6 +491,12 @@ def run_test_fancy_polygon():
     circle = rg.Circle(rg.Point(240, 165), 150)
     circle.fill_color = 'blue'
     fancy_polygon(window, circle, 20, 7, 'lime green', 5)
+    window.close_on_mouse_click()
+
+    window = rg.RoseWindow(400, 400)
+    circle = rg.Circle(rg.Point(200, 200), 100)
+    circle.fill_color = 'black'
+    fancy_polygon(window, circle, 24, 12, 'white', 5)
     window.close_on_mouse_click()
 
     # -------------------------------------------------------------------------
@@ -558,8 +569,17 @@ def fancy_polygon(window, circle, number_of_lines, hops_to_next_point, color,
       :type color:           str
       :type thickness:       int
     """
+    circle.attach_to(window)
+    ends = generate_points_on_circle(circle, number_of_lines)
+    for k in range(number_of_lines):
+        lines = rg.Line(ends[k - hops_to_next_point], ends[k])
+        lines.color = color
+        lines.thickness = thickness
+        lines.attach_to(window)
+    window.render()
+
     # -------------------------------------------------------------------------
-    # TODO: 10. Implement and test this function.
+    # Done: 10. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPLEMENTATION REQUIREMENT:
